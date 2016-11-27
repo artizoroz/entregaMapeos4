@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+ <!-- Mapping configuration details between Customer class and customer table -->
+<hibernate-mapping package="org.sistema.hibernate.xml">
+ 
+    <class name="Doctor" table="Doctor">
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" />
+        <property name="area" column="area"/>
+        
+        <set name="patients" table="doctorpatient" inverse="true" lazy="false" fetch="select">
+            <key column="iddoctor" />
+            <many-to-many column="idpatient" class="Patient" />
+        </set>
+    </class>
+ 
+</hibernate-mapping>
